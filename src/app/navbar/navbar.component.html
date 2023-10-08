@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
+      <div class="container">
+        <a class="navbar-brand" routerLink="home">Tawsela</a>
+        <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul *ngIf="isLogin" class="navbar-nav me-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="home" aria-current="page">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="cart" aria-current="page">Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="products">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="brand">Brands</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="wish-list">Wish List</a>
+                </li>
+            </ul>
+
+
+            <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                <div class="dropdown open">
+                    <a class="btn  dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false" *ngIf="!isLogin">
+                                <i class="fas fa-user fa-xl text-main cursor-pointer"></i>
+                            </a>
+                    <div class="dropdown-menu" aria-labelledby="triggerId">
+                        <a class="dropdown-item" routerLink="forget-password" routerLinkActive="router-link-active" >Forget Password</a>
+                    </div>
+                  </div>
+                <li class="nav-item position-relative" *ngIf="isLogin">
+                    <a class="nav-link" routerLink="/cart" aria-current="page">
+                        <i class="fa fa-shopping-cart text-main"></i>
+                        <div class="badge bg-main position-absolute top-0 end-0">{{numOfCartItems}}</div>
+                    </a>
+                </li>
+                <li class="nav-item" *ngIf="!isLogin">
+                    <a class="nav-link" routerLink="sign-up" aria-current="page">sign-up</a>
+                </li>
+                <li class="nav-item" *ngIf="!isLogin">
+                    <a class="nav-link" routerLink="sign-in" aria-current="page">Login</a>
+                </li>
+                <li (click)="logOut()" class="nav-item" *ngIf="isLogin">
+                    <a class="nav-link cursor-pointer"  aria-current="page">Logout</a>
+                </li>
+            </ul>
+        </div>
+  </div>
+</nav>

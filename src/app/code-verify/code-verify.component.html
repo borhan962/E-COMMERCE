@@ -1,0 +1,15 @@
+<div class="container">
+    <form [formGroup]="forgetPassword" (ngSubmit)="reset(forgetPassword)">
+        <label for="resetCode" class="my-3">resetCode :</label>
+        <input type="tel" formControlName="resetCode" class="form-control mb-2" id="resetCode">
+        <div *ngIf="forgetPassword.get('resetCode')?.errors && forgetPassword.get('resetCode')?.touched" class="alert alert-danger">
+           <p *ngIf="forgetPassword.get('resetCode')?.getError('required')" class="mb-0">resetCode is required</p>
+           </div>
+        <button  class="btn bg-main ms-auto d-block text-white">
+           <i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i>
+          <span *ngIf="!isLoading">Verify</span> 
+        </button>    
+   </form>
+</div>
+
+

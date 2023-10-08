@@ -1,0 +1,38 @@
+<div class="container my-5">
+    <div class="d-flex justify-content-between">
+        <h2>Cart:</h2>
+        <button class="btn btn-danger" (click)="clearCart()">Clear All</button>
+    </div>
+    
+    <div class="bg-main-light" *ngIf="cartDetailes.data">  
+      <div class="d-flex p-5 justify-content-between ">
+
+          <h4>Total Items: <span class="text-main">{{cartDetailes.data.products.length}}</span> </h4>
+          <h4>Total Price: <span class="text-main">{{cartDetailes.data.totalCartPrice}}</span> </h4>
+
+    </div>
+    <div class="row border-bottom mb-4" *ngFor="let product of cartDetailes.data.products | filterProducts">
+        <div class="col-md-1">
+            <img [src]="product.product.imageCover" class="img-fluid" alt="">
+        </div>
+        <div class="col-md-9">
+            <div class="item">
+            <h4>{{product.product.title}}</h4>
+            <p class="text-main">{{product.product.category.name}}</p>
+            <div class="d-flex justify-content-between">
+                <p class="text-main">{{product.price | currency : "EGP"}}</p>
+            </div>
+        </div>
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-success" (click)="updateCount(product.count-1,product.product.id)">-</button>
+            <span class="h5 mx-2">{{product.count}}</span>
+            <button class="btn btn-success" (click)="updateCount(product.count+1,product.product.id)">+</button>
+            <div class="mt-3">
+            <button class="btn text-danger px-0" (click)="deleteItem(product.product.id)"><i class="fa fa-regular fa-trash-can"></i> Remove</button>
+        </div>
+        </div>
+    </div>
+</div>
+  <button class="btn bg-main w-50 d-block mx-auto" [routerLink]="['/check-out/',cartDetailes.data._id]">Check Out</button>
+</div>

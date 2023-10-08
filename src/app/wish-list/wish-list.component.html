@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row" >
+        <div class="col-md-2" *ngFor="let product of allProduct">
+            <a [routerLink]="['/productDetails',product.id]" >
+                <img [src]="product.imageCover" class="img-fluid" alt="">
+                <p class="text-main">{{product.category.name}}</p>
+                <h2 class="h6">{{product.title | trem: 2}}</h2>
+                <div class="d-flex justify-content-between">
+                    <span>{{product.price}}EGP</span>
+                    <div>
+                    <i class="fa fa-star rating-color" aria-hidden="true"></i>
+                    {{product.ratingsAverage}}
+                </div>
+                </div>
+                </a>
+                <div>
+                <button class="btn bg-main w-100 text-white" (click)="addToCart(product.id)">+ Add</button>
+                <button class="btn btn-danger w-100" (click)="removeFromWishList(product.id)"><span class="position-relative top-0 end-0"><i class="fa-solid fa-heart-crack"></i></span></button>
+
+                </div>
+        </div>
+    </div>
+</div>
